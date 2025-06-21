@@ -9,28 +9,42 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </head>
   <body>
     <!-- HEADER SECTION -->
     <section class="header">
       <nav class="navbar">
         <div class="nav-left">
-          <a href="#" class="nav-link">Home</a>
-          <a href="#" class="nav-link">Collections</a>
-          <a href="#" class="nav-link">Brands</a>
-          <a href="#" class="nav-link">About Us</a>
+          <a href="/" class="nav-link">Home</a>
+          <a href="/collections" class="nav-link">Collections</a>
+          <a href="/brands" class="nav-link">Brands</a>
+          <a href="/about" class="nav-link">About Us</a>
         </div>
-        <div class="logo">
-          <div class="logo-circle">
-            <span class="logo-text">Shaas</span>
-          </div>
-        </div>
+        <div class="logo"></div>
+        <img src="/images/navlogomain.png" alt="Shaas Logo" class="logo-img" />
         <div class="nav-right">
           <div class="social-icons">
-            <span class="social-icon">f</span>
-            <span class="social-icon">@</span>
-            <span class="social-icon">in</span>
-            <span class="social-icon">📧</span>
+            <span class="social-icon">
+              <img src="/images/fb.png" alt="Facebook" />
+            </span>
+            <span class="social-icon">
+              <img src="/images/ig.png" alt="Instagram" />
+            </span>
+            <span class="social-icon">
+              <img src="/images/notes.png" alt="LinkedIn" />
+            </span>
+            <span class="social-icon">
+              <img src="/images/bag.png" alt="Email" />
+            </span>
           </div>
         </div>
       </nav>
@@ -42,7 +56,7 @@
         <div class="hero-frame left-frame">
           <div class="ornate-border">
             <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
+              src="/images/g8.png"
               alt="Woman in traditional dress"
               class="hero-image"
             />
@@ -51,7 +65,7 @@
         <div class="hero-frame right-frame">
           <div class="ornate-border">
             <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
+              src="/images/g10.png"
               alt="Woman in traditional dress"
               class="hero-image"
             />
@@ -63,77 +77,259 @@
     <!-- COLLECTIONS SECTION -->
     <section class="collections">
       <div class="collections-header">
-        <div class="ornate-circle">
-          <span class="collections-title">Collections</span>
+        <div class="header-title">
+          <img
+            src="/images/left-pink-flower.png"
+            alt="Collections"
+            class="collections-left-flower"
+          />
+          <span class="line"></span>
+          <img
+            src="/images/collections.png"
+            alt="Collections"
+            class="collections-round"
+          />
+          <span class="line"></span>
+          <img
+            src="/images/right-pink-flower.png"
+            alt="Collections"
+            class="collections-right-flower"
+          />
         </div>
       </div>
-      <div class="stamp-container">
-        <div class="stamp">
-          <div class="stamp-border">
-            <div class="stamp-image">
-              <img
-                src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-                alt="Collection item"
-              />
+
+      <div class="stamp-container swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="stamp">
+              <div class="stamp-border">
+                <div class="stamp-image">
+                  <img
+                    src="/images/frame.png"
+                    alt="Frame"
+                    class="frame-image"
+                  />
+                  <img
+                    src="/images/model-frame-1.png"
+                    alt="Collection item"
+                    class="stamp-image-item"
+                  />
+                </div>
+                <div class="stamp-text">
+                  <div class="stamp-text-title">
+                    <img src="/images/abc1.png" alt="Bijare" />
+                  </div>
+                  <p>
+                    Midnight shades, mirror work aur shimmer ka perfect fusion.
+                    सितारे outfits are made to dazzle under lights—jaise aap
+                    khud ek chalti phirti galaxy ho. Ideal for cocktail nights
+                    and glamorous weddings, yeh collection har nazar khinch leta
+                    hai. Shine gracefully, because you were born to stand out.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="stamp-text">
-              <h3>बिज़ारे</h3>
-              <p>
-                बिज़ारे का जमाना इस लहे तक पहुंच गया है कि हमारे दादा-नाना के
-                ज़माने में जो चीज़ें थीं, वो अब हमारे दौर में आ गई हैं। ये
-                कलेक्शन उन्हीं पुराने दिनों की याद दिलाता है जब सादगी और
-                खूबसूरती साथ चलती थी।
-              </p>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="stamp">
+              <div class="stamp-border">
+                <div class="stamp-image">
+                  <img
+                    src="/images/frame.png"
+                    alt="Frame"
+                    class="frame-image"
+                  />
+                  <img
+                    src="/images/model-frame-2.png"
+                    alt="Collection item"
+                    class="stamp-image-item"
+                  />
+                </div>
+                <div class="stamp-text">
+                  <div class="stamp-text-title">
+                    <img src="/images/abc2.png" alt="Bijare" />
+                  </div>
+                  <p>
+                    Ombré shades, scalloped edges aur breezy silhouettes make
+                    लहर playful yet elegant. Inspired by lehron ki raw beauty,
+                    each piece flows like poetry. Ideal for outdoor functions,
+                    beach events, or haldi moments. Yeh collection har kadam ko
+                    ek rhythm deta hai—where fashion meets freedom in motion.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="stamp">
+              <div class="stamp-border">
+                <div class="stamp-image">
+                  <img
+                    src="/images/frame.png"
+                    alt="Frame"
+                    class="frame-image"
+                  />
+                  <img
+                    src="/images/model-frame-1.png"
+                    alt="Collection item"
+                    class="stamp-image-item"
+                  />
+                </div>
+                <div class="stamp-text">
+                  <div class="stamp-text-title">
+                    <img src="/images/abc1.png" alt="Bijare" />
+                  </div>
+                  <p>
+                    Midnight shades, mirror work aur shimmer ka perfect fusion.
+                    सितारे outfits are made to dazzle under lights—jaise aap
+                    khud ek chalti phirti galaxy ho. Ideal for cocktail nights
+                    and glamorous weddings, yeh collection har nazar khinch leta
+                    hai. Shine gracefully, because you were born to stand out.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="stamp">
+              <div class="stamp-border">
+                <div class="stamp-image">
+                  <img
+                    src="/images/frame.png"
+                    alt="Frame"
+                    class="frame-image"
+                  />
+                  <img
+                    src="/images/model-frame-2.png"
+                    alt="Collection item"
+                    class="stamp-image-item"
+                  />
+                </div>
+                <div class="stamp-text">
+                  <div class="stamp-text-title">
+                    <img src="/images/abc2.png" alt="Bijare" />
+                  </div>
+                  <p>
+                    Ombré shades, scalloped edges aur breezy silhouettes make
+                    लहर playful yet elegant. Inspired by lehron ki raw beauty,
+                    each piece flows like poetry. Ideal for outdoor functions,
+                    beach events, or haldi moments. Yeh collection har kadam ko
+                    ek rhythm deta hai—where fashion meets freedom in motion.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="stamp">
+              <div class="stamp-border">
+                <div class="stamp-image">
+                  <img
+                    src="/images/frame.png"
+                    alt="Frame"
+                    class="frame-image"
+                  />
+                  <img
+                    src="/images/model-frame-1.png"
+                    alt="Collection item"
+                    class="stamp-image-item"
+                  />
+                </div>
+                <div class="stamp-text">
+                  <div class="stamp-text-title">
+                    <img src="/images/abc1.png" alt="Bijare" />
+                  </div>
+                  <p>
+                    Midnight shades, mirror work aur shimmer ka perfect fusion.
+                    सितारे outfits are made to dazzle under lights—jaise aap
+                    khud ek chalti phirti galaxy ho. Ideal for cocktail nights
+                    and glamorous weddings, yeh collection har nazar khinch leta
+                    hai. Shine gracefully, because you were born to stand out.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="stamp">
+              <div class="stamp-border">
+                <div class="stamp-image">
+                  <img
+                    src="/images/frame.png"
+                    alt="Frame"
+                    class="frame-image"
+                  />
+                  <img
+                    src="/images/model-frame-2.png"
+                    alt="Collection item"
+                    class="stamp-image-item"
+                  />
+                </div>
+                <div class="stamp-text">
+                  <div class="stamp-text-title">
+                    <img src="/images/abc2.png" alt="Bijare" />
+                  </div>
+                  <p>
+                    Ombré shades, scalloped edges aur breezy silhouettes make
+                    लहर playful yet elegant. Inspired by lehron ki raw beauty,
+                    each piece flows like poetry. Ideal for outdoor functions,
+                    beach events, or haldi moments. Yeh collection har kadam ko
+                    ek rhythm deta hai—where fashion meets freedom in motion.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="stamp">
-          <div class="stamp-border">
-            <div class="stamp-image">
-              <img
-                src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-                alt="Collection item"
-              />
-            </div>
-            <div class="stamp-text">
-              <h3>बहुरे</h3>
-              <p>
-                बहुरे कलेक्शन में पारंपरिक शिल्पकारी के साथ आधुनिक डिज़ाइन का
-                मेल है। ये कपड़े न सिर्फ खूबसूरत हैं बल्कि आरामदायक भी हैं। हर
-                पीस में भारतीय संस्कृति की छाप है।
-              </p>
-            </div>
+
+        <div class="navigation-container">
+          <div class="swiper-collection-button-next">
+            <img
+              src="/images/arrow-right.png"
+              alt="Next"
+              class="navigation-image"
+            />
           </div>
         </div>
       </div>
+
+      <script>
+        const swiper = new Swiper(".swiper", {
+          slidesPerView: 2,
+          spaceBetween: 20,
+          loop: true,
+          navigation: {
+            nextEl: ".swiper-collection-button-next",
+            prevEl: ".swiper-collection-button-prev",
+          },
+        });
+      </script>
     </section>
 
     <!-- FEATURED STORY SECTION -->
     <section class="featured-story">
       <div class="story-container">
         <div class="story-image">
-          <div class="ornate-frame">
-            <img
-              src="/images/about.png"
-              alt="Traditional artwork"
-            />
-          </div>
+          <img src="/images/about.png" alt="Traditional artwork" />
         </div>
         <div class="story-content">
-          <h2 class="story-title">स्टुडियो Shaas</h2>
+          <h2 class="story-title">स्टुडियो Khaas</h2>
           <p class="story-text">
-            Studio Shaas is not merely a label—it is a legacy draped in opulence
-            and soul. Woven from the silks of tradition and adorned with the
-            grandeur of timeless elegance, it whispers a narrative of the Indian
-            woman—majestic yet gentle, fierce yet tender. From the labelled
-            sparkles the hand-spun gold spun का बुनावट, our collections are
-            royal essence and timeless elegance. Studio Shaas is where couture
-            is not just hand-woven every thread sings of ancestry and every
-            silhouette tells a tale. From Shaas, it is not clothing; rather
-            every one piece and weaves in grace. Unapologetically Shaas.
+            Studio Khas is not merely a label—it is a legacy draped in opulence and soul. Woven from the silks of tradition and adorned with the grandeur of timeless craft, each ensemble is a coronation of the Indian woman—majestic yet gentle, fierce yet feminine. From the celestial sparkle of  सितारे  to the spiritual grace of  रूहानियत , our collections echo royal reverie and divine elegance. Studio Khas is where heritage is not worn, but lived—where every thread sings of ancestry, and every silhouette moves like a royal decree. For the woman who commands with poise and reigns in grace. Unapologetically Khaas.
           </p>
         </div>
       </div>
+
+      <img
+        src="/images/pink-flower.png"
+        alt="Pink Flower"
+        class="pink-flower"
+      />
     </section>
 
     <!-- PRODUCTS SECTION -->
@@ -141,85 +337,91 @@
       <div class="products-grid">
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-              alt="Product"
-            />
+            <img src="/images/prod-main.png" alt="Product" />
           </div>
           <div class="product-info">
-            <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
-            <div class="product-price">Rs 12,900</div>
-            <div class="product-rating">★★★★★</div>
+            <div class="row">
+              <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
+              <div class="color-container">
+                <div class="product-price">Rs 12,900</div>
+                <div class="product-rating">★★★★★</div>
+              </div>
+            </div>
             <button class="buy-now-btn">BUY NOW</button>
           </div>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-              alt="Product"
-            />
+            <img src="/images/prod-main.png" alt="Product" />
           </div>
           <div class="product-info">
-            <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
-            <div class="product-price">Rs 12,900</div>
-            <div class="product-rating">★★★★★</div>
+            <div class="row">
+              <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
+              <div class="color-container">
+                <div class="product-price">Rs 12,900</div>
+                <div class="product-rating">★★★★★</div>
+              </div>
+            </div>
             <button class="buy-now-btn">BUY NOW</button>
           </div>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-              alt="Product"
-            />
+            <img src="/images/prod-main.png" alt="Product" />
           </div>
           <div class="product-info">
-            <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
-            <div class="product-price">Rs 12,900</div>
-            <div class="product-rating">★★★★★</div>
+            <div class="row">
+              <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
+              <div class="color-container">
+                <div class="product-price">Rs 12,900</div>
+                <div class="product-rating">★★★★★</div>
+              </div>
+            </div>
             <button class="buy-now-btn">BUY NOW</button>
           </div>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-              alt="Product"
-            />
+            <img src="/images/prod-main.png" alt="Product" />
           </div>
           <div class="product-info">
-            <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
-            <div class="product-price">Rs 12,900</div>
-            <div class="product-rating">★★★★★</div>
+            <div class="row">
+              <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
+              <div class="color-container">
+                <div class="product-price">Rs 12,900</div>
+                <div class="product-rating">★★★★★</div>
+              </div>
+            </div>
             <button class="buy-now-btn">BUY NOW</button>
           </div>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-              alt="Product"
-            />
+            <img src="/images/prod-main.png" alt="Product" />
           </div>
           <div class="product-info">
-            <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
-            <div class="product-price">Rs 12,900</div>
-            <div class="product-rating">★★★★★</div>
+            <div class="row">
+              <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
+              <div class="color-container">
+                <div class="product-price">Rs 12,900</div>
+                <div class="product-rating">★★★★★</div>
+              </div>
+            </div>
             <button class="buy-now-btn">BUY NOW</button>
           </div>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-woman-purple-sweater-skirt_1303-17488.jpg?uid=R146131911&ga=GA1.1.987641957.1730710896&semt=ais_hybrid&w=740"
-              alt="Product"
-            />
+            <img src="/images/prod-main.png" alt="Product" />
           </div>
           <div class="product-info">
-            <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
-            <div class="product-price">Rs 12,900</div>
-            <div class="product-rating">★★★★★</div>
+            <div class="row">
+              <h3 class="product-name">Lorem Ipsum Has Been Lorem Ipsum Has</h3>
+              <div class="color-container">
+                <div class="product-price">Rs 12,900</div>
+                <div class="product-rating">★★★★★</div>
+              </div>
+            </div>
             <button class="buy-now-btn">BUY NOW</button>
           </div>
         </div>
@@ -227,37 +429,45 @@
     </section>
 
     <!-- FOOTER SECTION -->
-    <section class="footer">
+    <footer class="footer">
+      <img
+        class="footer-flower"
+        src="/images/navflower.png"
+        alt="Footer Background"
+      />
+      <div class="footer-logo">
+        <img
+          class="footer-logo-img"
+          src="/images/navlogomain.png"
+          alt="Shaas Logo"
+          class="logo-img"
+        />
+      </div>
+      <div class="footer-line"></div>
+
       <div class="footer-container">
         <div class="footer-left">
-          <div class="footer-logo">
-            <div class="logo-circle">
-              <span class="logo-text">Shaas</span>
-            </div>
-          </div>
           <div class="footer-address">
             <h4>Address</h4>
             <p>
-              401, Titanium City Centre,<br />
-              100 Feet Anand Nagar Road,<br />
-              Prahlad Nagar,<br />
-              Ahmedabad,<br />
-              Gujarat, India - 380015
+              2972 Westheimer Rd. Santa Ana, <br />
+              Illinois 85486
             </p>
           </div>
         </div>
         <div class="footer-center">
           <div class="footer-links">
-            <h4>Site</h4>
+            <h4>Info</h4>
             <ul>
-              <li><a href="#">All products</a></li>
-              <li><a href="#">Available sizes</a></li>
-              <li><a href="#">Featured items</a></li>
-              <li><a href="#">My account</a></li>
-              <li><a href="#">Cart</a></li>
-              <li><a href="#">Favourite</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#">For patients</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Experts</a></li>
+              <li><a href="#">Illnesses</a></li>
+              <li><a href="#">About clinic</a></li>
+              <li><a href="#">Articles</a></li>
+              <li><a href="#">Feedback</a></li>
+              <li><a href="#">Vacancies</a></li>
+              <li><a href="#">Contacts</a></li>
             </ul>
           </div>
         </div>
@@ -265,20 +475,28 @@
           <div class="footer-contact">
             <h4>Contact Us</h4>
             <p>
-              +91 888 888 88 88<br />
-              mail@studioshaaas.com
+              +1 891 989-11-91<br />
+              shaas@studioshaaas.com
             </p>
           </div>
           <div class="footer-social">
-            <span class="social-icon">f</span>
-            <span class="social-icon">@</span>
-            <span class="social-icon">in</span>
+            <span class="social-icon">
+              <img src="/images/fb1.png" alt="Facebook" />
+            </span>
+            <span class="social-icon">
+              <img src="/images/insta1.png" alt="Instagram" />
+            </span>
+            <span class="social-icon">
+              <img src="/images/yout1.png" alt="LinkedIn" />
+            </span>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
         <p>2024 Studio Shaas. All rights reserved.</p>
+        <p>Certificate</p>
+        <p></p>
       </div>
-    </section>
+    </footer>
   </body>
 </html>
