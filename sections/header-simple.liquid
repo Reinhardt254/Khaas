@@ -65,18 +65,21 @@
 }
 
 .khaas-dropdown-content {
-  display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background: #f0eadc;
   min-width: 200px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
-  z-index: 1001;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100000;
 }
 
-.khaas-nav-link-dropdown.active .khaas-dropdown-content,
 .khaas-nav-link-dropdown:hover .khaas-dropdown-content {
   opacity: 1;
   visibility: visible;
@@ -94,13 +97,16 @@
 }
 
 .khaas-logo-simple {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   height: 80px;
-  width: auto;
+  width: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 0;
+  z-index: 999;
 }
 
 .khaas-logo-simple .khaas-logo-img {
@@ -122,7 +128,7 @@
 .khaas-social-icon {
   width: 35px;
   height: 35px;
-  background: transparent;
+  background: #6b5b477a;
   color: #2f2f2f;
   display: flex;
   cursor: pointer;
@@ -138,8 +144,8 @@
 }
 
 .khaas-social-icon img {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
@@ -196,6 +202,7 @@
     background: #f0eadc;
     flex-direction: column;
     padding: 80px 40px;
+    padding-top: 120px;
     transition: left 0.3s ease-in-out;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
@@ -218,6 +225,10 @@
 
   .khaas-navbar {
     padding: 0 20px;
+  }
+
+  .khaas-logo-simple .khaas-logo-img {
+    width: 150px;
   }
 
   .khaas-logo-simple {
@@ -276,21 +287,21 @@
       <div class="khaas-social-icons">
         {% if section.settings.facebook_url != blank %}
           <a href="{{ section.settings.facebook_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Facebook">
-            {% render 'icon-facebook' %}
+            <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/fb.png?v=1750594625" alt="Facebook" width="20" height="20" />
           </a>
         {% endif %}
         {% if section.settings.instagram_url != blank %}
           <a href="{{ section.settings.instagram_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Instagram">
-            {% render 'icon-instagram' %}
+            <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/ig.png?v=1750594625" alt="Instagram" width="20" height="20" />
           </a>
         {% endif %}
         {% if section.settings.notes_url != blank %}
           <a href="{{ section.settings.notes_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Notes">
-            {% render 'icon-twitter' %}
+            <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/notes.png?v=1750594626" alt="Notes" width="20" height="20" />
           </a>
         {% endif %}
         <a href="{{ routes.cart_url }}" class="khaas-social-icon" aria-label="Cart">
-          <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/cart_16827100_a2297ce4-ee86-4aac-ad77-447bae6de8af.png?v=1750602141" alt="Cart" />
+          <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/cart_16827100_a2297ce4-ee86-4aac-ad77-447bae6de8af.png?v=1750602141" alt="Cart" width="20" height="20" />
           {% if cart.item_count > 0 %}
             <span class="khaas-cart-count">{{ cart.item_count }}</span>
           {% endif %}

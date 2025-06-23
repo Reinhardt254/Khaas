@@ -1,5 +1,5 @@
 /* RESET AND BASE STYLES */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luxurious+Script&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Reenie+Beanie&family=Satisfy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luxurious+Script&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Reenie+Beanie&family=Satisfy&family=Alata&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
   margin: 0;
@@ -11,7 +11,7 @@ body {
   font-family: "Inter", sans-serif;
   line-height: 1.6;
   color: #333;
-  background: #f0eadc;
+  background: #f0eadc !important;
   width: 100%;
 
   display: flex;
@@ -222,19 +222,47 @@ img {
 .hero-overlay {
   width: 100%;
   height: 100%;
-  object-fit: contain;
 
   position: absolute;
-  bottom: 6%;
+  bottom: 0%;
   z-index: 10;
 
   overflow: hidden;
 }
 
-.hero-overlay .img-2 {
+.hero-overlay .swiper2 {
   width: 100%;
   height: 100%;
+}
+
+.hero-overlay .swiper3 {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-overlay .swiper2 .swiper-slide {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.hero-overlay .swiper3 .swiper-slide {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.hero-overlay .img-2 {
+  width: 80%;
+  height: 80%;
   object-fit: contain;
+  padding-bottom: 8%;
 }
 
 /* ---------------------------- COLLECTIONS SECTION ---------------------------- */
@@ -258,7 +286,7 @@ img {
   object-fit: contain;
 
   position: absolute;
-  left: -100px;
+  left: -120px;
   z-index: 10;
 }
 
@@ -268,7 +296,7 @@ img {
   object-fit: contain;
 
   position: absolute;
-  right: -100px;
+  right: -120px;
   z-index: 10;
 }
 
@@ -473,13 +501,38 @@ img {
 } */
 
 .stamp-text p {
-  font-size: 16px;
+  font-size: 1.5vw;
   line-height: 1.2;
   color: #0e0e0e;
   text-align: justify;
   font-weight: 300;
   font-family: "Reenie Beanie", cursive;
   width: 80%;
+}
+
+/* @media (min-width: 1000px) {
+  .stamp-text p {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .stamp-text p {
+    font-size: 25px;
+  }
+} */
+
+@media (max-width: 1000px) {
+  .stamp-text p {
+    font-size: 1.2vw;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .stamp-text p {
+    font-size: 100%;
+  }
 }
 
 .navigation-container {
@@ -616,23 +669,44 @@ img {
 .products {
   background: #f0eadc;
   padding: 40px 0;
+  height: auto;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  margin: 0 auto;
-  padding: 0 20px;
+  justify-items: center;
+  align-content: stretch;
+  box-sizing: border-box;
 
   width: 95%;
+  max-width: 100%;
+}
+
+@media (min-width: 1400px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 10px;
   background: transparent;
-  overflow: hidden;
   transition: transform 0.3s ease;
+  height: auto;
+  width: 100%;
 }
 
 /* .product-card:hover {
@@ -641,7 +715,7 @@ img {
 
 .product-image {
   width: 100%;
-  height: 400px;
+  height: 80%;
   overflow: hidden;
 
   border-radius: 5px;
@@ -655,13 +729,16 @@ img {
 }
 
 .product-info {
+  display: block;
+  height: auto;
+  width: 100%;
   padding: 25px 0;
   box-sizing: border-box;
 }
 
 .product-info .row {
   width: 100%;
-  height: 100%;
+  height: auto;
 
   display: flex;
   align-items: start;
@@ -682,23 +759,38 @@ img {
 
 .product-name {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: #333;
   margin-bottom: 15px;
   line-height: 1.4;
+  font-family: "Alata", sans-serif;
 }
 
 .product-price {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: #de3a88;
   margin-bottom: 0px;
+  font-family: "Alata", sans-serif;
+}
+
+.product-price .compare-at-price {
+  color: #2f2f2f;
+  text-decoration: line-through;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 4px;
+  font-family: "Alata", sans-serif;
+  font-weight: 500;
 }
 
 .product-rating {
   color: #f9ae40;
   font-size: 14px;
-  margin-bottom: 0px;
+  margin-bottom: 0px; 
+  font-family: "Alata", sans-serif;
+  font-weight: 500;
+  display: block;
 }
 
 .buy-now-btn {
@@ -737,7 +829,7 @@ img {
 
 .footer {
   background: #eecf7b;
-  padding: 60px 0 20px;
+  padding: 0px 0 20px;
   color: #8b7355;
 
   width: 98%;
@@ -768,16 +860,17 @@ img {
   left: 0;
   right: 0;
   z-index: 5;
+  text-align: center;
 }
 
 .footer-flower {
-  width: 250px;
-  height: 250px;
+  width: 400px;
+  height: 400px;
   object-fit: contain;
 
   position: absolute;
-  top: -50px;
-  left: -50px;
+  top: -130px;
+  left: -100px;
 
   z-index: 5;
 
@@ -793,9 +886,11 @@ img {
   display: flex;
   justify-content: space-between;
   max-width: 1200px;
-  margin: 0 auto;
   padding: 0 20px;
   margin-bottom: 40px;
+
+  border-top: 1px solid rgba(139, 115, 85, 0.3);
+  padding-top: 40px;
 }
 
 .footer-logo {
@@ -812,7 +907,7 @@ img {
 }
 
 .footer-logo-img {
-  width: 150px;
+  width: 200px;
   height: 100%;
   object-fit: contain;
 
@@ -821,14 +916,6 @@ img {
   mix-blend-mode: multiply;
   -webkit-filter: drop-shadow(0 0 8px #eecf7b) brightness(1);
   filter: drop-shadow(0 0 8px #eecf7b) brightness(1);
-}
-
-.footer-line {
-  width: 95%;
-  height: 1px;
-  background: #8b7355;
-
-  margin-bottom: 40px;
 }
 
 .footer-left {
@@ -1423,6 +1510,8 @@ img {
   z-index: 1;
 }
 
+
+
 /* ---------------------------- COLLECTIONS SECTION ---------------------------- */
 .collections-layout-custom {
   width: 100%;
@@ -1473,5 +1562,100 @@ img {
   line-height: 1;
   color: #ffffff;
   text-shadow: -12px 12px 4px rgba(0, 0, 0, 0.7);
+  text-align: center !important;
+  width: 100%;
 }
 
+@media (max-width: 1400px) {
+  .collections-layout-custom .content h2{
+    font-size: 150px;
+  }
+
+  .collections-layout h2 {
+    font-family: "Satisfy";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100px;
+  
+    color: #ffffff;
+  
+    text-shadow: -12px 12px 4px rgba(0, 0, 0, 0.7);
+  
+    position: absolute;
+    left: 0%;
+    top: 0%;
+  
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    z-index: 1;
+  }
+}
+
+@media (max-width: 768px) {
+.khaas-nav-right{
+  display: none !important;
+}
+.collections-layout-custom .content h2{
+  font-size: 100px;
+}
+
+.collections-layout-custom {
+  width: 100%;
+  height: 100%;
+  background: #f0eadc;
+
+  position: relative;
+  min-height: 400px;
+}
+
+  .collections-layout-custom .bn {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+.collections-layout-custom .left-overlay {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.collections-layout h2 {
+  font-family: "Satisfy";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+
+  color: #ffffff;
+
+  text-shadow: -12px 12px 4px rgba(0, 0, 0, 0.7);
+
+  position: absolute;
+  left: 0%;
+  top: 0%;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center !important;
+  text-align: center !important;
+
+  z-index: 1;
+}
+}
+
+#shopify-section-announcement-bar{
+  z-index: 10000 !important;
+}

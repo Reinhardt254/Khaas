@@ -1,5 +1,263 @@
 {% assign main_menu = linklists[section.settings.main_menu] %}
 
+<style>
+.khaas-header {
+  background: transparent;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1000;
+}
+
+.khaas-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.khaas-nav-left {
+  display: flex;
+  gap: 30px;
+  position: relative;
+  z-index: 1000;
+}
+    
+.khaas-nav-link {
+  text-decoration: none;
+  color: #2f2f2f;
+  font-weight: 400;
+  font-size: 15px;
+  transition: color 0.3s ease;
+  font-family: "Playfair Display", serif;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.khaas-nav-link:hover {
+  color: #6b5b4784;
+}
+
+.khaas-nav-link-dropdown {
+  position: relative;
+}
+
+.khaas-dropdown-icon {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+  margin-left: 5px;
+}
+
+.khaas-dropdown-icon img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+}
+
+.khaas-nav-link-dropdown:hover .khaas-dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.khaas-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f0eadc;
+  min-width: 200px;
+  padding: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100000;
+}
+
+.khaas-nav-link-dropdown:hover .khaas-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.khaas-dropdown-link {
+  padding: 8px 20px;
+  display: block;
+  white-space: nowrap;
+}
+
+.khaas-dropdown-link:hover {
+  background: #6b5b4720;
+}
+
+.khaas-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -170px;
+  background: transparent;
+  height: 400px;
+  width: 400px;
+  border-radius: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.khaas-nav-flower {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+.khaas-logo-img {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+.khaas-social-icons {
+  display: flex;
+  height: 100%;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.khaas-social-icon {
+  width: 35px;
+  height: 35px;
+  background: #6b5b477a;
+  color: #2f2f2f;
+  display: flex;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.khaas-social-icon:hover {
+  background: #6b5b4769;
+}
+
+.khaas-social-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.khaas-cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #8b7355;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.khaas-mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.khaas-mobile-nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #2f2f2f;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .khaas-mobile-nav-toggle {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .khaas-nav-left {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #f0eadc;
+    flex-direction: column;
+    padding: 80px 40px;
+    padding-top: 120px;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .khaas-nav-left.active {
+    left: 0;
+  }
+
+  .khaas-mobile-nav-toggle.active span:first-child {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .khaas-mobile-nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .khaas-mobile-nav-toggle.active span:last-child {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .khaas-navbar {
+    padding: 0 20px;
+  }
+
+  .khaas-logo {
+    margin: 0 auto;
+    top: -170px;
+  }
+
+  .khaas-logo-img {
+    width: 150px;
+  }
+
+  .khaas-nav-right {
+    position: absolute;
+    right: 20px;
+  }
+
+  .khaas-nav-flower {
+    display: none;
+  }
+}
+</style>
+
 <section class="khaas-header">
   <nav class="khaas-navbar">
     <div class="khaas-mobile-nav-toggle">
@@ -54,21 +312,21 @@
       <div class="khaas-social-icons">
         {% if section.settings.facebook_url != blank %}
           <a href="{{ section.settings.facebook_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Facebook">
-            {% render 'icon-facebook' %}
+            <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/fb.png?v=1750594625" alt="Facebook" width="20" height="20" />
           </a>
         {% endif %}
         {% if section.settings.instagram_url != blank %}
           <a href="{{ section.settings.instagram_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Instagram">
-            {% render 'icon-instagram' %}
+            <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/ig.png?v=1750594625" alt="Instagram" width="20" height="20" />
           </a>
         {% endif %}
         {% if section.settings.notes_url != blank %}
           <a href="{{ section.settings.notes_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Notes">
-            {% render 'icon-twitter' %}
+            <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/notes.png?v=1750594626" alt="Notes" width="20" height="20" />
           </a>
         {% endif %}
         <a href="{{ routes.cart_url }}" class="khaas-social-icon" aria-label="Cart">
-          <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/cart_16827100_a2297ce4-ee86-4aac-ad77-447bae6de8af.png?v=1750602141" alt="Cart" />
+          <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/cart_16827100_a2297ce4-ee86-4aac-ad77-447bae6de8af.png?v=1750602141" alt="Cart" width="20" height="20" />
           {% if cart.item_count > 0 %}
             <span class="khaas-cart-count">{{ cart.item_count }}</span>
           {% endif %}
@@ -78,277 +336,78 @@
   </nav>
 </section>
 
-<style>
-.khaas-header {
-  background: transparent;
-  height: 80px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileNavToggle = document.querySelector('.khaas-mobile-nav-toggle');
+  const navLeft = document.querySelector('.khaas-nav-left');
+  const dropdowns = document.querySelectorAll('.khaas-nav-link-dropdown');
 
-.khaas-navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 40px;
-}
+  // Mobile menu toggle
+  if (mobileNavToggle && navLeft) {
+    mobileNavToggle.addEventListener('click', () => {
+      mobileNavToggle.classList.toggle('active');
+      navLeft.classList.toggle('active');
+    });
 
-.khaas-nav-left {
-  display: flex;
-  gap: 30px;
-  position: relative;
-  z-index: 1000;
-}
-
-.khaas-nav-link {
-  text-decoration: none;
-  color: #2f2f2f;
-  font-weight: 400;
-  font-size: 15px;
-  transition: color 0.3s ease;
-  font-family: "Playfair Display", serif;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.khaas-nav-link:hover {
-  color: #6b5b4784;
-}
-
-.khaas-nav-link-dropdown {
-  position: relative;
-}
-
-.khaas-dropdown-icon {
-  display: inline-flex;
-  transition: transform 0.3s ease;
-  margin-left: 5px;
-}
-
-.khaas-dropdown-icon img {
-  width: 12px;
-  height: 12px;
-  object-fit: contain;
-}
-
-.khaas-nav-link-dropdown:hover .khaas-dropdown-icon {
-  transform: rotate(180deg);
-}
-
-.khaas-dropdown-content {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #f0eadc;
-  min-width: 200px;
-  padding: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-
-  z-index: 100000;
-}
-
-.khaas-nav-link-dropdown:hover .khaas-dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.khaas-dropdown-link {
-  padding: 8px 20px;
-  display: block;
-  white-space: nowrap;
-}
-
-.khaas-dropdown-link:hover {
-  background: #6b5b4720;
-}
-
-.khaas-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: -170px;
-  background: transparent;
-  height: 400px;
-  width: 400px;
-  border-radius: 0%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.khaas-nav-flower {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 0;
-  z-index: 0;
-}
-
-.khaas-logo-img {
-  width: 180px;
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-
-.khaas-social-icons {
-  display: flex;
-  height: 100%;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1000;
-}
-
-.khaas-social-icon {
-  width: 35px;
-  height: 35px;
-  background: transparent;
-  color: #2f2f2f;
-  display: flex;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  position: relative;
-}
-
-.khaas-social-icon:hover {
-  background: #6b5b4769;
-}
-
-.khaas-social-icon svg {
-  width: 28px;
-  height: 28px;
-  fill: currentColor;
-}
-
-.khaas-social-icon img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
-.khaas-cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #6b5b47;
-  color: #f0eadc;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: "Inter", sans-serif;
-}
-
-/* Mobile Navigation */
-.khaas-mobile-nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-}
-
-.khaas-mobile-nav-toggle span {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background-color: #2f2f2f;
-  transition: all 0.3s ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .khaas-mobile-nav-toggle {
-    display: flex;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    document.querySelectorAll('.khaas-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavToggle.classList.remove('active');
+        navLeft.classList.remove('active');
+      });
+    });
   }
 
-  .khaas-nav-left {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 70%;
-    height: 100vh;
-    background: #f0eadc;
-    flex-direction: column;
-    padding: 80px 40px;
-    transition: left 0.3s ease-in-out;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  }
+  // Dropdown handling
+  dropdowns.forEach(dropdown => {
+    const link = dropdown.querySelector('.khaas-nav-link');
+    let timeoutId;
 
-  .khaas-nav-left.active {
-    left: 0;
-  }
+    // Mouse events
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(timeoutId);
+      dropdowns.forEach(d => d.classList.remove('active'));
+      dropdown.classList.add('active');
+    });
 
-  .khaas-mobile-nav-toggle.active span:first-child {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
+    dropdown.addEventListener('mouseleave', () => {
+      timeoutId = setTimeout(() => {
+        dropdown.classList.remove('active');
+      }, 150); // Small delay to allow moving to submenu
+    });
 
-  .khaas-mobile-nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
+    // Click events for touch devices
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) return; // Don't prevent default on mobile
+      
+      const isActive = dropdown.classList.contains('active');
+      e.preventDefault();
+      
+      dropdowns.forEach(d => d.classList.remove('active'));
+      if (!isActive) {
+        dropdown.classList.add('active');
+      }
+    });
+  });
 
-  .khaas-mobile-nav-toggle.active span:last-child {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  .khaas-dropdown-content {
-    position: static;
-    background: transparent;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    padding-left: 20px;
-  }
-
-  .khaas-nav-link-dropdown {
-    flex-direction: column;
-  }
-
-  .khaas-dropdown-link {
-    padding: 8px 0;
-  }
-}
-</style>
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.khaas-nav-link-dropdown')) {
+      dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+    }
+  });
+});
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    },
     {
       "type": "image_picker",
       "id": "logo",
@@ -357,18 +416,7 @@
     {
       "type": "image_picker",
       "id": "header_flower",
-      "label": "Header Decorative Flower",
-      "info": "Decorative flower image that appears behind the logo (400 x 400px recommended)"
-    },
-    {
-      "type": "link_list",
-      "id": "main_menu",
-      "label": "Main Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "header",
-      "content": "Social Media Links"
+      "label": "Header Decorative Flower"
     },
     {
       "type": "url",
@@ -384,6 +432,12 @@
       "type": "url",
       "id": "notes_url",
       "label": "Notes URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "category": "Header"
     }
   ]
 }
