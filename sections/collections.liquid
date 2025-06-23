@@ -1,0 +1,237 @@
+<section class="collections">
+  <div class="collections-header">
+    <div class="header-title">
+      {% if section.settings.left_flower != blank %}
+        <img src="{{ section.settings.left_flower | img_url: 'master' }}" alt="Collections" class="collections-left-flower">
+      {% else %}
+        <img src="{{ 'left-pink-flower.png' | asset_url }}" alt="Collections" class="collections-left-flower">
+      {% endif %}
+      <span class="line line-left"></span>
+      <img src="{{ section.settings.title_image | img_url: 'master' }}" alt="Collections" class="collections-round">
+      <span class="line line-right"></span>
+      {% if section.settings.right_flower != blank %}
+        <img src="{{ section.settings.right_flower | img_url: 'master' }}" alt="Collections" class="collections-right-flower">
+      {% else %}
+        <img src="{{ 'right-pink-flower.png' | asset_url }}" alt="Collections" class="collections-right-flower">
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="stamp-container swiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+          <div class="stamp">
+            {% if section.settings.frame_bg != blank %}
+              <img src="{{ section.settings.frame_bg | img_url: 'master' }}" alt="Frame" class="stamp-bg">
+            {% else %}
+              <img src="{{ 'frame-bg.png' | asset_url }}" alt="Frame" class="stamp-bg">
+            {% endif %}
+            <div class="stap-contaner">
+              <div class="stamp-image">
+                {% if section.settings.frame_image != blank %}
+                  <img src="{{ section.settings.frame_image | img_url: 'master' }}" alt="Frame" class="frame-image">
+                {% else %}
+                  <img src="{{ 'frame.png' | asset_url }}" alt="Frame" class="frame-image">
+                {% endif %}
+                {% if block.settings.collection_image != blank %}
+                  <img src="{{ block.settings.collection_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="stamp-image-item">
+                {% endif %}
+              </div>
+              <div class="stamp-text">
+                <div class="stamp-text-title">
+                  {% if block.settings.title_image != blank %}
+                    <img src="{{ block.settings.title_image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+                  {% endif %}
+                </div>
+                <p>{{ block.settings.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="navigation-container">
+      <div class="swiper-collection-button-next">
+        {% if section.settings.arrow_image != blank %}
+          <img src="{{ section.settings.arrow_image | img_url: 'master' }}" alt="Next" class="navigation-image">
+        {% else %}
+          <img src="{{ 'arrow-right.png' | asset_url }}" alt="Next" class="navigation-image">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Elements"
+    },
+    {
+      "type": "image_picker",
+      "id": "title_image",
+      "label": "Center Title Image",
+      "info": "Main collections title image"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_flower",
+      "label": "Left Flower Decoration",
+      "info": "Pink flower on the left side"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_flower",
+      "label": "Right Flower Decoration",
+      "info": "Pink flower on the right side"
+    },
+    {
+      "type": "header",
+      "content": "Slider Common Elements"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_bg",
+      "label": "Frame Background",
+      "info": "Common background frame for all slides"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_image",
+      "label": "Inner Frame",
+      "info": "Common inner frame for all slides"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_image",
+      "label": "Navigation Arrow",
+      "info": "Right arrow for slider navigation"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_slide",
+      "name": "Collection Slide",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Collection Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection Image",
+          "info": "Main model image inside the frame"
+        },
+        {
+          "type": "image_picker",
+          "id": "title_image",
+          "label": "Collection Title Image",
+          "info": "Decorative title image (like सितारे, लहर etc.)"
+        },
+        {
+          "type": "header",
+          "content": "Collection Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection Name",
+          "default": "Collection Title",
+          "info": "Used for alt text and accessibility"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Collection Description",
+          "default": "Collection description goes here",
+          "info": "Describe the collection's style, inspiration and occasions"
+        },
+        {
+          "type": "url",
+          "id": "collection_link",
+          "label": "Collection Link",
+          "info": "Optional: Link to the collection page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections Slider",
+      "category": "Slider",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "collection_slide",
+          "settings": {
+            "title": "सितारे Collection",
+            "description": "Midnight shades, mirror work aur shimmer ka perfect fusion. सितारे outfits are made to dazzle under lights—jaise aap khud ek chalti phirti galaxy ho. Ideal for cocktail nights and glamorous weddings, yeh collection har nazar khinch leta hai. Shine gracefully, because you were born to stand out."
+          }
+        },
+        {
+          "type": "collection_slide",
+          "settings": {
+            "title": "लहर Collection",
+            "description": "Ombré shades, scalloped edges aur breezy silhouettes make लहर playful yet elegant. Inspired by lehron ki raw beauty, each piece flows like poetry. Ideal for outdoor functions, beach events, or haldi moments. Yeh collection har kadam ko ek rhythm deta hai—where fashion meets freedom in motion."
+          }
+        },
+        {
+          "type": "collection_slide",
+          "settings": {
+            "title": "रूहानियत Collection",
+            "description": "Deep jewel tones meet intricate threadwork in रूहानियत. Each piece tells a story of heritage—where traditional craftsmanship meets contemporary silhouettes. Perfect for intimate gatherings and cultural celebrations, this collection embodies the soul of Indian luxury."
+          }
+        },
+        {
+          "type": "collection_slide",
+          "settings": {
+            "title": "चमक Collection",
+            "description": "Shimmering sequins and bold patterns define चमक. A celebration of light and movement, where every piece becomes a statement. Ideal for sangeet nights and festive occasions, this collection turns heads and captures hearts with its radiant energy."
+          }
+        },
+        {
+          "type": "collection_slide",
+          "settings": {
+            "title": "परंपरा Collection",
+            "description": "Rich textiles and time-honored techniques come together in परंपरा. A tribute to India's craft legacy, each ensemble speaks of centuries-old traditions. Perfect for wedding ceremonies and traditional events, this collection is royal heritage reimagined."
+          }
+        },
+        {
+          "type": "collection_slide",
+          "settings": {
+            "title": "आभा Collection",
+            "description": "Soft pastels and delicate embellishments characterize आभा. Like morning light on dewdrops, this collection brings ethereal grace to contemporary silhouettes. Perfect for morning ceremonies and elegant soirées, where subtle glamour makes the strongest statement."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function() {
+  const swiper = new Swiper(".swiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-collection-button-next",
+      prevEl: ".swiper-collection-button-prev",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+    },
+  });
+});
+{% endjavascript %} 

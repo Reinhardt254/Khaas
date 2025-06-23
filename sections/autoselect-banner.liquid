@@ -1,0 +1,93 @@
+{% assign current_url = request.path %}
+{% assign current_handle = current_url | split: '/' | last %}
+
+{% comment %}
+  Define default banner settings for each category.
+  Add more categories as needed.
+{% endcomment %}
+{% assign banner_settings = null %}
+
+{% case current_handle %}
+  {% when 'collections' %}
+    {% assign banner_settings = section.settings.collections_banner %}
+    {% assign banner_title = 'Collections' %}
+  {% when 'about' %}
+    {% assign banner_settings = section.settings.about_banner %}
+    {% assign banner_title = 'About Us' %}
+  {% when 'brands' %}
+    {% assign banner_settings = section.settings.brands_banner %}
+    {% assign banner_title = 'Our Brands' %}
+  {% when 'contact' %}
+    {% assign banner_settings = section.settings.contact_banner %}
+    {% assign banner_title = 'Contact Us' %}
+  {% else %}
+    {% if current_url contains '/collections/' %}
+      {% assign banner_settings = section.settings.collection_page_banner %}
+      {% assign banner_title = collection.title %}
+    {% endif %}
+{% endcase %}
+
+<div class="collections-layout">
+  {% if banner_settings != blank %}
+    <img 
+      src="{{ banner_settings | img_url: 'master' }}" 
+      alt="{{ banner_settings.alt | escape }}"
+      loading="eager"
+    >
+  {% else %}
+    <img 
+      src="{{ 'shop-hero.png' | asset_url }}" 
+      alt="Default banner image"
+      loading="eager"
+    >
+  {% endif %}
+  
+  {% if banner_title != blank %}
+    <h2>{{ banner_title }}</h2>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Auto-Select Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "collections_banner",
+      "label": "Collections Page Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "about_banner",
+      "label": "About Page Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "brands_banner",
+      "label": "Brands Page Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "contact_banner",
+      "label": "Contact Page Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_page_banner",
+      "label": "Individual Collection Page Banner"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auto-Select Banner",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %} 

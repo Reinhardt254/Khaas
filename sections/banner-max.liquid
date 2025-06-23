@@ -1,0 +1,226 @@
+{% comment %}
+  Banner Max Section
+  - A full-width banner with background image, overlay image, and large category text
+  - Automatically detects and displays current category content
+  - Allows choosing between banner-max and autoselect styles per category
+{% endcomment %}
+
+{% assign current_url = request.path %}
+{% assign current_handle = current_url | split: '/' | last %}
+
+{% comment %}
+  Get all available collections
+{% endcomment %}
+{% assign available_collections = collections | map: 'handle' %}
+
+{% assign category_data = null %}
+{% for block in section.blocks %}
+  {% if block.type == 'category' and block.settings.category_id == current_handle %}
+    {% assign category_data = block.settings %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if category_data != null %}
+  {% if category_data.banner_style == 'banner-max' %}
+    <section class="banner-max">
+      <img src="{{ category_data.background_image | img_url: 'master' }}" class="banner-background" alt="{{ category_data.category_name }}" />
+      <img src="{{ category_data.overlay_image | img_url: 'master' }}" class="banner-overlay" alt="{{ category_data.category_name }}" />
+      <div class="banner-content">
+        <h2>{{ category_data.category_name }}</h2>
+      </div>
+    </section>
+  {% else %}
+    <div class="collections-layout">
+      {% if category_data.autoselect_banner != blank %}
+        <img 
+          src="{{ category_data.autoselect_banner | img_url: 'master' }}" 
+          alt="{{ category_data.category_name }}"
+          loading="eager"
+        >
+      {% else %}
+        <img 
+          src="{{ 'shop-hero.png' | asset_url }}" 
+          alt="Default banner image"
+          loading="eager"
+        >
+      {% endif %}
+      
+      {% if category_data.category_name != blank %}
+        <h2>{{ category_data.category_name }}</h2>
+      {% endif %}
+    </div>
+  {% endif %}
+{% else %}
+  <!-- Fallback if no category is found -->
+  <div class="banner-content">
+    <h2>{{ current_handle | capitalize }}</h2>
+  </div>
+{% endif %}
+
+{% style %}
+.banner-max {
+  width: 100%;
+  height: 100%;
+  background: #f0eadc;
+  position: relative;
+  min-height: 300px;
+  z-index: 1;
+}
+
+.banner-max .banner-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+.banner-max .banner-overlay {
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+}
+
+.banner-max .banner-content {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  z-index: 4;
+}
+
+.banner-max .banner-content h2 {
+  font-family: "Luxurious Script", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: -12px 12px 4px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+  .banner-max .banner-content h2 {
+    font-size: 100px;
+  }
+  
+  .banner-max .banner-overlay {
+    width: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-max .banner-content h2 {
+    font-size: 60px;
+  }
+}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Banner Max",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "category_id",
+          "label": "Category Collection",
+          "info": "Select the collection for this category"
+        },
+        {
+          "type": "text",
+          "id": "category_name",
+          "label": "Display Name",
+          "info": "Name to display in the banner (leave blank to use collection title)"
+        },
+        {
+          "type": "select",
+          "id": "banner_style",
+          "label": "Banner Style",
+          "options": [
+            {
+              "value": "banner-max",
+              "label": "Banner Max Style"
+            },
+            {
+              "value": "autoselect",
+              "label": "Auto-select Style"
+            }
+          ],
+          "default": "banner-max",
+          "info": "Choose which banner style to use for this category"
+        },
+        {
+          "type": "header",
+          "content": "Banner Max Style Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image",
+          "info": "Main background image for banner max style"
+        },
+        {
+          "type": "image_picker",
+          "id": "overlay_image",
+          "label": "Left Side Image",
+          "info": "Left side overlay image for banner max style"
+        },
+        {
+          "type": "header",
+          "content": "Auto-select Style Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "autoselect_banner",
+          "label": "Banner Image",
+          "info": "Main banner image for auto-select style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Max",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "category_id": "manasa",
+            "category_name": "Manasa",
+            "banner_style": "banner-max"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_id": "collections",
+            "category_name": "Collections",
+            "banner_style": "autoselect"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %} 

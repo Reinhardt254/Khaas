@@ -1,5 +1,5 @@
 /* RESET AND BASE STYLES */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Reenie+Beanie&family=Satisfy&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luxurious+Script&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Reenie+Beanie&family=Satisfy&display=swap');
 
 * {
   margin: 0;
@@ -13,6 +13,12 @@ body {
   color: #333;
   background: #f0eadc;
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   overflow-x: hidden;
 }
 
@@ -98,44 +104,64 @@ img {
   display: flex;
   height: 100%;
   gap: 0.5rem;
-
   align-items: center;
   justify-content: center;
-
   position: relative;
   z-index: 1000;
 }
 
 .social-icon {
-  width: 25px;
-  height: 25px;
-  border-radius: 0%;
-  background: transparent;
-  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6b5b477a;
+  color: #000;
   display: flex;
   cursor: pointer;
   transition: background 0.3s ease;
-
-  display: flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 100%;
-
   padding: 3px;
-
-  cursor: pointer;
-}
-
-.social-icon img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
+  text-decoration: none;
 }
 
 .social-icon:hover {
-  background: #6b5b4769;
+  background: #8b735558;
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Style specific social icons */
+.icon-facebook {
+  width: 12px;
+}
+
+.icon-instagram {
+  width: 18px;
+}
+
+.icon-youtube {
+  width: 22px;
+}
+
+.icon-tiktok {
+  width: 18px;
+}
+
+.icon-twitter {
+  width: 18px;
+}
+
+.icon-pinterest {
+  width: 18px;
+}
+
+.icon-cart {
+  width: 20px;
 }
 
 /* ---------------------------- HERO SECTION ---------------------------- */
@@ -179,12 +205,33 @@ img {
 
 .hero-frame .ornate-border {
   width: 100%;
-  height: auto;
+  height: 100%;
 
   position: relative;
 }
 
-.hero-frame .ornate-border img {
+.hero-frame .ornate-border .hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  position: relative;
+  z-index: 10;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  position: absolute;
+  bottom: 6%;
+  z-index: 10;
+
+  overflow: hidden;
+}
+
+.hero-overlay .img-2 {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -675,7 +722,7 @@ img {
 /* ---------------------------- FOOTER SECTION ---------------------------- */
 .footer-container-main {
   width: 100%;
-  height: 100%;
+  height: 100% !important;
 
   position: relative;
 
@@ -683,6 +730,9 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background: #f0eadc !important;
+  z-index: 0;
 }
 
 .footer {
@@ -691,7 +741,7 @@ img {
   color: #8b7355;
 
   width: 98%;
-  height: 100%;
+  height: 100% !important;
 
   display: flex;
   flex-direction: column;
@@ -701,16 +751,23 @@ img {
   position: relative;
 
   overflow: hidden;
-
-  margin-bottom: -180px;
+  margin-bottom: 20px;
 
   border-radius: 10px;
+
+  z-index: 10;
 }
 
 .footer-bg {
   width: 100%;
-  height: 200px;
-  background: #754f23;
+  height: 200px !important;
+  background: #754f23 !important;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
 }
 
 .footer-flower {
@@ -885,20 +942,52 @@ img {
 }
 
 .footer-social .social-icon {
-  color: white;
-  height: 40px;
   width: 40px;
+  height: 40px;
   border-radius: 50%;
+  background: #6b5b477a;
+  color: #000;
+  display: flex;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
 }
 
 .footer-social .social-icon:hover {
   background: #8b735558;
 }
 
-.footer-social .social-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.footer-social .social-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Style specific social icons */
+.footer-social .icon-facebook {
+  width: 12px;
+}
+
+.footer-social .icon-instagram {
+  width: 18px;
+}
+
+.footer-social .icon-youtube {
+  width: 22px;
+}
+
+.footer-social .icon-tiktok {
+  width: 18px;
+}
+
+.footer-social .icon-twitter {
+  width: 18px;
+}
+
+.footer-social .icon-pinterest {
+  width: 18px;
 }
 
 .footer-bottom {
@@ -1066,7 +1155,6 @@ img {
     z-index: 10;
   }
 
-
   .stamp-text p {
     font-size: 10px;
   }
@@ -1127,55 +1215,54 @@ img {
     gap: 40px;
   }
 
-  
-.footer-center {
-  width: 100%;
-  height: 100%;
-  padding-left: 0%;
-  box-sizing: border-box;
+  .footer-center {
+    width: 100%;
+    height: 100%;
+    padding-left: 0%;
+    box-sizing: border-box;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-.footer-links {
-  width: 100%;
-  height: 100%;
-  padding-left: 0%;
-  box-sizing: border-box;
-}
+  .footer-links {
+    width: 100%;
+    height: 100%;
+    padding-left: 0%;
+    box-sizing: border-box;
+  }
 
-.footer-links h4 {
-  text-align: center;
-}
+  .footer-links h4 {
+    text-align: center;
+  }
 
-.footer-links ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  .footer-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-.footer-links li {
-  text-align: center;
-  font-size: 14px;
-}
+  .footer-links li {
+    text-align: center;
+    font-size: 14px;
+  }
 
-.footer-links a {
-  text-align: center;
-  font-size: 14px;
-}
+  .footer-links a {
+    text-align: center;
+    font-size: 14px;
+  }
 
-.footer-left {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  .footer-left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   .footer-right {
     text-align: left;
@@ -1192,10 +1279,10 @@ img {
     font-weight: 600;
     margin-bottom: 10px;
     color: #6b5b47;
-  
+
     font-family: "Inter", sans-serif;
   }
-  
+
   .footer-address p {
     text-align: center;
     line-height: 1.6;
@@ -1214,7 +1301,7 @@ img {
   .footer-contact h4 {
     width: 100%;
     text-align: center;
-  } 
+  }
 
   .footer-contact p {
     text-align: center;
@@ -1333,5 +1420,58 @@ img {
   align-items: center;
   justify-content: center;
 
-  z-index: 10;
+  z-index: 1;
 }
+
+/* ---------------------------- COLLECTIONS SECTION ---------------------------- */
+.collections-layout-custom {
+  width: 100%;
+  height: 100%;
+  background: #f0eadc;
+
+  position: relative;
+  min-height: 300px;
+}
+
+.collections-layout-custom .bn {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collections-layout-custom .left-overlay {
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.collections-layout-custom .content {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+
+  display: flex;
+  align-items: end;
+  justify-content: end;
+
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1;
+}
+
+.collections-layout-custom .content h2 {
+  font-family: "Luxurious Script", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: -12px 12px 4px rgba(0, 0, 0, 0.7);
+}
+

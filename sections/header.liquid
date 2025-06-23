@@ -1,0 +1,390 @@
+{% assign main_menu = linklists[section.settings.main_menu] %}
+
+<section class="khaas-header">
+  <nav class="khaas-navbar">
+    <div class="khaas-mobile-nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="khaas-nav-left">
+      {% for link in main_menu.links %}
+        {% if link.links != blank %}
+          <div class="khaas-nav-link-dropdown">
+            <a href="{{ link.url }}" class="khaas-nav-link">
+              {{ link.title }}
+              <span class="khaas-dropdown-icon">
+                <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/direction_16534850.png?v=1750599934" alt="dropdown" />
+              </span>
+            </a>
+            <div class="khaas-dropdown-content">
+              {% for childlink in link.links %}
+                <a href="{{ childlink.url }}" class="khaas-nav-link khaas-dropdown-link">{{ childlink.title }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <a href="{{ link.url }}" class="khaas-nav-link">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="khaas-logo">
+      {% if section.settings.header_flower != blank %}
+        {{ section.settings.header_flower | image_url: width: 400 | image_tag: 
+          class: 'khaas-nav-flower',
+          alt: 'Header Decorative Element',
+          loading: 'lazy'
+        }}
+      {% else %}
+        <img src="{{ 'navflower.png' | asset_url }}" alt="Decorative Flower" class="khaas-nav-flower">
+      {% endif %}
+      <a href="/" class="khaas-logo-link">
+        {% if section.settings.logo != blank %}
+          {{ section.settings.logo | image_url: width: 180 | image_tag: 
+            class: 'khaas-logo-img',
+            alt: shop.name,
+            loading: 'lazy'
+          }}
+        {% else %}
+          <img src="{{ 'navlogomain.png' | asset_url }}" alt="{{ shop.name }}" class="khaas-logo-img">
+        {% endif %}
+      </a>
+    </div>
+    <div class="khaas-nav-right">
+      <div class="khaas-social-icons">
+        {% if section.settings.facebook_url != blank %}
+          <a href="{{ section.settings.facebook_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Facebook">
+            {% render 'icon-facebook' %}
+          </a>
+        {% endif %}
+        {% if section.settings.instagram_url != blank %}
+          <a href="{{ section.settings.instagram_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+            {% render 'icon-instagram' %}
+          </a>
+        {% endif %}
+        {% if section.settings.notes_url != blank %}
+          <a href="{{ section.settings.notes_url }}" class="khaas-social-icon" target="_blank" rel="noopener" aria-label="Notes">
+            {% render 'icon-twitter' %}
+          </a>
+        {% endif %}
+        <a href="{{ routes.cart_url }}" class="khaas-social-icon" aria-label="Cart">
+          <img src="https://cdn.shopify.com/s/files/1/0660/3299/2486/files/cart_16827100_a2297ce4-ee86-4aac-ad77-447bae6de8af.png?v=1750602141" alt="Cart" />
+          {% if cart.item_count > 0 %}
+            <span class="khaas-cart-count">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </nav>
+</section>
+
+<style>
+.khaas-header {
+  background: transparent;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.khaas-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.khaas-nav-left {
+  display: flex;
+  gap: 30px;
+  position: relative;
+  z-index: 1000;
+}
+
+.khaas-nav-link {
+  text-decoration: none;
+  color: #2f2f2f;
+  font-weight: 400;
+  font-size: 15px;
+  transition: color 0.3s ease;
+  font-family: "Playfair Display", serif;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.khaas-nav-link:hover {
+  color: #6b5b4784;
+}
+
+.khaas-nav-link-dropdown {
+  position: relative;
+}
+
+.khaas-dropdown-icon {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+  margin-left: 5px;
+}
+
+.khaas-dropdown-icon img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+}
+
+.khaas-nav-link-dropdown:hover .khaas-dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.khaas-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f0eadc;
+  min-width: 200px;
+  padding: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+
+  z-index: 100000;
+}
+
+.khaas-nav-link-dropdown:hover .khaas-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.khaas-dropdown-link {
+  padding: 8px 20px;
+  display: block;
+  white-space: nowrap;
+}
+
+.khaas-dropdown-link:hover {
+  background: #6b5b4720;
+}
+
+.khaas-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -170px;
+  background: transparent;
+  height: 400px;
+  width: 400px;
+  border-radius: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.khaas-nav-flower {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 0;
+}
+
+.khaas-logo-img {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.khaas-social-icons {
+  display: flex;
+  height: 100%;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.khaas-social-icon {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  color: #2f2f2f;
+  display: flex;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.khaas-social-icon:hover {
+  background: #6b5b4769;
+}
+
+.khaas-social-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.khaas-social-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.khaas-cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #6b5b47;
+  color: #f0eadc;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+/* Mobile Navigation */
+.khaas-mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.khaas-mobile-nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #2f2f2f;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .khaas-mobile-nav-toggle {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .khaas-nav-left {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #f0eadc;
+    flex-direction: column;
+    padding: 80px 40px;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
+
+  .khaas-nav-left.active {
+    left: 0;
+  }
+
+  .khaas-mobile-nav-toggle.active span:first-child {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .khaas-mobile-nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .khaas-mobile-nav-toggle.active span:last-child {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .khaas-dropdown-content {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    padding-left: 20px;
+  }
+
+  .khaas-nav-link-dropdown {
+    flex-direction: column;
+  }
+
+  .khaas-dropdown-link {
+    padding: 8px 0;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_flower",
+      "label": "Header Decorative Flower",
+      "info": "Decorative flower image that appears behind the logo (400 x 400px recommended)"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Social Media Links"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "notes_url",
+      "label": "Notes URL"
+    }
+  ]
+}
+{% endschema %} 

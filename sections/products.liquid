@@ -1,0 +1,126 @@
+<section class="products">
+  {% if section.settings.title != blank %}
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  {% endif %}
+
+  <div class="products-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% if collection != blank %}
+      {% for product in collection.products limit: section.settings.products_count %}
+        <div class="product-card">
+          <div class="product-image">
+            {% if product.featured_image != blank %}
+              <img src="{{ product.featured_image | img_url: '600x' }}" 
+                alt="{{ product.title }}"
+                loading="lazy"
+                width="600"
+                height="600">
+            {% else %}
+              <img src="{{ 'prod-main.png' | asset_url }}" alt="{{ product.title }}">
+            {% endif %}
+          </div>
+          <div class="product-info">
+            <div class="row">
+              <h3 class="product-name">{{ product.title }}</h3>
+              <div class="color-container">
+                <div class="product-price">
+                  {% if product.price_varies %}
+                    From {{ product.price_min | money }}
+                  {% else %}
+                    {{ product.price | money }}
+                  {% endif %}
+                </div>
+                {% if product.metafields.reviews.rating %}
+                  <div class="product-rating">{{ product.metafields.reviews.rating }}</div>
+                {% else %}
+                  <div class="product-rating">★★★★★</div>
+                {% endif %}
+              </div>
+            </div>
+            <a href="{{ product.url }}" class="buy-now-btn">
+              {% if product.available %}
+                {{ section.settings.button_text | default: 'BUY NOW' }}
+              {% else %}
+                {{ section.settings.sold_out_text | default: 'SOLD OUT' }}
+              {% endif %}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="no-products">
+        <p>No products found in this collection.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.section-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  color: #8b7355;
+  margin-bottom: 40px;
+}
+
+.no-products {
+  text-align: center;
+  padding: 40px;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  color: #6b5b47;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Products Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to Display"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "default": 6,
+      "label": "Number of Products to Show"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Buy Button Text",
+      "default": "BUY NOW"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_text",
+      "label": "Sold Out Text",
+      "default": "SOLD OUT"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Grid",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %} 

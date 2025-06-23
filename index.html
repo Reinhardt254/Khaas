@@ -55,28 +55,89 @@
       </nav>
     </section>
 
-    <!-- HERO SECTION -->
+
     <section class="hero">
       <div class="hero-container">
         <div class="hero-frame left-frame">
           <div class="ornate-border">
             <img
-              src="/images/g8.png"
+              src="/images/hero-streak.png"
               alt="Woman in traditional dress"
               class="hero-image"
             />
+
+            <div class="hero-overlay">
+              <div class="swiper2">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="/images/a.png" alt="" class="img-2">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/images/ab.png" alt="" class="img-2">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/images/abc.png" alt="" class="img-2">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/images/abcd.png" alt="" class="img-2">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="hero-frame right-frame">
           <div class="ornate-border">
             <img
-              src="/images/g10.png"
+              src="/images/hero-streak.png"
               alt="Woman in traditional dress"
               class="hero-image"
             />
           </div>
+
+          <div class="hero-overlay">
+            <div class="swiper3">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="/images/a.png" alt="" class="img-2">
+                </div>
+                <div class="swiper-slide">
+                  <img src="/images/ab.png" alt="" class="img-2">
+                </div>
+                <div class="swiper-slide">
+                  <img src="/images/abc.png" alt="" class="img-2">
+                </div>
+                <div class="swiper-slide">
+                  <img src="/images/abcd.png" alt="" class="img-2">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <script>
+        const swiper2 = new Swiper(".swiper2", {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          loop: true,
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+        });
+
+        const swiper3 = new Swiper(".swiper3", {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          loop: true,
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+        });
+      </script>
     </section>
 
     <!-- COLLECTIONS SECTION -->

@@ -1,0 +1,138 @@
+{% if section.settings.background_image != blank %}
+  <section class="hero" style="background-image: url('{{ section.settings.background_image | img_url: 'master' }}');">
+{% else %}
+  <section class="hero" style="background-image: url('{{ 'hero-main.png' | asset_url }}');">
+{% endif %}
+  <div class="hero-container">
+    <div class="hero-frame left-frame">
+      <div class="ornate-border">
+        {% if section.settings.left_background != blank %}
+          <img src="{{ section.settings.left_background | img_url: 'master' }}" alt="{{ section.settings.left_background.alt | escape }}" class="hero-image">
+        {% else %}
+          <img src="{{ 'hero-streak.png' | asset_url }}" alt="Background frame" class="hero-image">
+        {% endif %}
+
+        <div class="hero-overlay">
+          <div class="swiper2">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% if block.type == 'left_slide' %}
+                  <div class="swiper-slide">
+                    {% if block.settings.image != blank %}
+                      <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | escape }}" class="img-2">
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-frame right-frame">
+      <div class="ornate-border">
+        {% if section.settings.right_background != blank %}
+          <img src="{{ section.settings.right_background | img_url: 'master' }}" alt="{{ section.settings.right_background.alt | escape }}" class="hero-image">
+        {% else %}
+          <img src="{{ 'hero-streak.png' | asset_url }}" alt="Background frame" class="hero-image">
+        {% endif %}
+
+        <div class="hero-overlay">
+          <div class="swiper3">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% if block.type == 'right_slide' %}
+                  <div class="swiper-slide">
+                    {% if block.settings.image != blank %}
+                      <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | escape }}" class="img-2">
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const swiper2 = new Swiper(".swiper2", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });
+
+    const swiper3 = new Swiper(".swiper3", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Main Background Image",
+      "info": "The main background image for the hero section"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_background",
+      "label": "Left Frame Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_background",
+      "label": "Right Frame Background"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "left_slide",
+      "name": "Left Frame Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        }
+      ]
+    },
+    {
+      "type": "right_slide",
+      "name": "Right Frame Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %} 

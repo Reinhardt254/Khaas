@@ -1,0 +1,64 @@
+<section class="featured-story">
+  <div class="story-container">
+    <div class="story-image">
+      {% if section.settings.story_image != blank %}
+        <img src="{{ section.settings.story_image | img_url: 'master' }}" alt="{{ section.settings.title }}">
+      {% else %}
+        <img src="{{ 'about.png' | asset_url }}" alt="Traditional artwork">
+      {% endif %}
+    </div>
+    <div class="story-content">
+      <h2 class="story-title">{{ section.settings.title }}</h2>
+      <p class="story-text">{{ section.settings.description }}</p>
+    </div>
+  </div>
+
+  {% if section.settings.decoration_flower != blank %}
+    <img src="{{ section.settings.decoration_flower | img_url: 'master' }}" alt="Decorative Flower" class="pink-flower">
+  {% else %}
+    <img src="{{ 'pink-flower.png' | asset_url }}" alt="Pink Flower" class="pink-flower">
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Featured Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Story Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "स्टुडियो Khaas"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Studio Khas is not merely a label—it is a legacy draped in opulence and soul. Woven from the silks of tradition and adorned with the grandeur of timeless craft, each ensemble is a coronation of the Indian woman—majestic yet gentle, fierce yet feminine."
+    },
+    {
+      "type": "image_picker",
+      "id": "decoration_flower",
+      "label": "Decorative Flower Image",
+      "info": "Pink flower decoration shown on the right side"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Story",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %} 

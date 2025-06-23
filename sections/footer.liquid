@@ -1,0 +1,190 @@
+{% assign footer_menu = linklists[section.settings.footer_menu] %}
+
+<div class="footer-container-main">
+  <footer class="footer">
+    {% if section.settings.footer_flower %}
+      {{ section.settings.footer_flower | image_url: width: 250 | image_tag: 
+        class: 'footer-flower',
+        alt: 'Footer Decorative Element',
+        loading: 'lazy'
+      }}
+    {% endif %}
+    <div class="footer-logo">
+      {% if section.settings.footer_logo != blank %}
+        <img class="footer-logo-img" src="{{ section.settings.footer_logo | img_url: 'master' }}" alt="{{ shop.name }}">
+      {% else %}
+        <img class="footer-logo-img" src="{{ 'navlogomain.png' | asset_url }}" alt="{{ shop.name }}">
+      {% endif %}
+    </div>
+    <div class="footer-line"></div>
+
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-address">
+          <h4>{{ section.settings.address_title }}</h4>
+          <p>{{ section.settings.address | newline_to_br }}</p>
+        </div>
+      </div>
+      <div class="footer-center">
+        <div class="footer-links">
+          <h4>{{ section.settings.menu_title }}</h4>
+          <ul>
+            {% for link in footer_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-contact">
+          <h4>{{ section.settings.contact_title }}</h4>
+          <p>
+            {{ section.settings.phone }}<br>
+            {{ section.settings.email }}
+          </p>
+        </div>
+        <div class="footer-social">
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" class="social-icon" target="_blank">
+              {% render 'icon-facebook' %}
+            </a>
+          {%- endif -%}
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" class="social-icon" target="_blank">
+              {% render 'icon-instagram' %}
+            </a>
+          {%- endif -%}
+          {%- if settings.social_youtube_link != blank -%}
+            <a href="{{ settings.social_youtube_link }}" class="social-icon" target="_blank">
+              {% render 'icon-youtube' %}
+            </a>
+          {%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}
+            <a href="{{ settings.social_tiktok_link }}" class="social-icon" target="_blank">
+              {% render 'icon-tiktok' %}
+            </a>
+          {%- endif -%}
+          {%- if settings.social_twitter_link != blank -%}
+            <a href="{{ settings.social_twitter_link }}" class="social-icon" target="_blank">
+              {% render 'icon-twitter' %}
+            </a>
+          {%- endif -%}
+          {%- if settings.social_pinterest_link != blank -%}
+            <a href="{{ settings.social_pinterest_link }}" class="social-icon" target="_blank">
+              {% render 'icon-pinterest' %}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>{{ section.settings.copyright_text }}</p>
+      <p>{{ section.settings.certificate_text }}</p>
+      <p></p>
+    </div>
+  </footer>
+
+  <div class="footer-bg"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_flower",
+      "label": "Footer Decorative Flower",
+      "info": "Decorative flower image that appears on the left side of the footer"
+    },
+    {
+      "type": "header",
+      "content": "Address Information"
+    },
+    {
+      "type": "text",
+      "id": "address_title",
+      "label": "Address Title",
+      "default": "Address"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address"
+    },
+    {
+      "type": "header",
+      "content": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "menu_title",
+      "label": "Menu Title",
+      "default": "Info"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address"
+    },
+    {
+      "type": "header",
+      "content": "Footer Bottom"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "2024 Studio Shaas. All rights reserved."
+    },
+    {
+      "type": "text",
+      "id": "certificate_text",
+      "label": "Certificate Text",
+      "default": "Certificate"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "settings": {
+        "address_title": "Address",
+        "menu_title": "Info",
+        "contact_title": "Contact Us",
+        "copyright_text": "2024 Studio Shaas. All rights reserved.",
+        "certificate_text": "Certificate"
+      }
+    }
+  ]
+}
+{% endschema %} 

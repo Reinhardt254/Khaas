@@ -1,0 +1,46 @@
+{% if section.settings.banner_image != blank %}
+  <div class="collections-layout">
+    <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="{{ section.settings.banner_image.alt | escape }}">
+    {% if section.settings.banner_title != blank %}
+      <h2>{{ section.settings.banner_title }}</h2>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="collections-layout">
+    <img src="{{ 'shop-hero.png' | asset_url }}" alt="Default banner image">
+    {% if section.settings.banner_title != blank %}
+      <h2>{{ section.settings.banner_title }}</h2>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Banner Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "Collections"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Section",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %} 

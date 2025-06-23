@@ -1,0 +1,272 @@
+{%- style -%}
+  .khaas-contact-section {
+    background: #f0eadc;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .khaas-contact-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .khaas-contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .khaas-contact-title {
+    font-family: "Satisfy", cursive;
+    font-size: 48px;
+    color: #8b7355;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .khaas-contact-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #d4af37, #f4d03f);
+  }
+
+  .khaas-contact-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(139, 115, 85, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .khaas-form-success {
+    background: #eecf7b;
+    color: #8b7355;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .khaas-form-error {
+    background: #ffebee;
+    color: #d32f2f;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .khaas-form-group {
+    margin-bottom: 25px;
+  }
+
+  .khaas-form-field {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid rgba(139, 115, 85, 0.2);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: #2f2f2f;
+  }
+
+  .khaas-form-field:focus {
+    outline: none;
+    border-color: #8b7355;
+    box-shadow: 0 0 0 2px rgba(139, 115, 85, 0.1);
+  }
+
+  .khaas-form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b5b47;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .khaas-form-textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .khaas-submit-button {
+    background: #8b7355;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .khaas-submit-button:hover {
+    background: #6b5b47;
+    transform: translateY(-2px);
+  }
+
+  .khaas-contact-decoration {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    opacity: 0.1;
+  }
+
+  .khaas-decoration-left {
+    left: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .khaas-decoration-right {
+    right: -150px;
+    bottom: -150px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .khaas-contact-section {
+      padding: 60px 0;
+    }
+
+    .khaas-contact-title {
+      font-size: 36px;
+    }
+
+    .khaas-contact-form {
+      padding: 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="khaas-contact-section">
+  <div class="khaas-contact-container">
+    <div class="khaas-contact-header">
+      <h2 class="khaas-contact-title">{{ section.settings.heading | escape }}</h2>
+    </div>
+
+    {% if section.settings.left_decoration != blank %}
+      <img src="{{ section.settings.left_decoration | img_url: 'master' }}" alt="" class="khaas-contact-decoration khaas-decoration-left">
+    {% else %}
+      <img src="{{ 'left-pink-flower.png' | asset_url }}" alt="" class="khaas-contact-decoration khaas-decoration-left">
+    {% endif %}
+
+    {% if section.settings.right_decoration != blank %}
+      <img src="{{ section.settings.right_decoration | img_url: 'master' }}" alt="" class="khaas-contact-decoration khaas-decoration-right">
+    {% else %}
+      <img src="{{ 'right-pink-flower.png' | asset_url }}" alt="" class="khaas-contact-decoration khaas-decoration-right">
+    {% endif %}
+
+    {%- form 'contact', id: 'KhaasContactForm', class: 'khaas-contact-form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="khaas-form-success">
+          {% render 'icon-success' %} 
+          {{ 'templates.contact.form.post_success' | t }}
+        </div>
+      {%- elsif form.errors -%}
+        <div class="khaas-form-error">
+          {% render 'icon-error' %} 
+          {{ 'templates.contact.form.error_heading' | t }}
+          {% if form.errors contains 'email' %}
+            <br>
+            {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+          {% endif %}
+        </div>
+      {%- endif -%}
+
+      <div class="khaas-form-group">
+        <label class="khaas-form-label" for="ContactName">{{ 'templates.contact.form.name' | t }}</label>
+        <input 
+          type="text" 
+          id="ContactName"
+          class="khaas-form-field"
+          name="contact[name]"
+          value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+        >
+      </div>
+
+      <div class="khaas-form-group">
+        <label class="khaas-form-label" for="ContactEmail">{{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+        <input 
+          type="email" 
+          id="ContactEmail"
+          class="khaas-form-field"
+          name="contact[email]"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          required
+        >
+      </div>
+
+      <div class="khaas-form-group">
+        <label class="khaas-form-label" for="ContactPhone">{{ 'templates.contact.form.phone' | t }}</label>
+        <input 
+          type="tel" 
+          id="ContactPhone"
+          class="khaas-form-field"
+          name="contact[phone]"
+          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+        >
+      </div>
+
+      <div class="khaas-form-group">
+        <label class="khaas-form-label" for="ContactMessage">{{ 'templates.contact.form.comment' | t }}</label>
+        <textarea 
+          id="ContactMessage"
+          class="khaas-form-field khaas-form-textarea"
+          name="contact[body]"
+          rows="6"
+        >{{ form.body }}</textarea>
+      </div>
+
+      <button type="submit" class="khaas-submit-button">
+        {{ 'templates.contact.form.send' | t }}
+      </button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Get in Touch",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_decoration",
+      "label": "Left Decoration"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_decoration",
+      "label": "Right Decoration"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form"
+    }
+  ]
+}
+{% endschema %} 
